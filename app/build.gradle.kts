@@ -17,6 +17,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val accessToken = property("githubToken")?.toString() ?: error("missing token in gradle.properties")
+        buildConfigField("String", "GITHUB_TOKEN", "\"$accessToken\"")
     }
 
     buildTypes {
@@ -34,6 +37,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
     }
 }
 
