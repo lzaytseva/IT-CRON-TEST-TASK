@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_navigation_graph.xml"
+    app:startDestination="@id/userDetailsFragment">
+
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="com.github.lzaytseva.it_cron_test_task.presentation.ui.UserDetailsFragment"
+        android:label="UserDetailsFragment" />
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.github.lzaytseva.it_cron_test_task.presentation.ui.UsersFragment"
+        android:label="UsersFragment" >
+        <action
+            android:id="@+id/action_usersFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+    </fragment>
+</navigation>
