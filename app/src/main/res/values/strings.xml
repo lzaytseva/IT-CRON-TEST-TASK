@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IT-CRON-TEST-TASK</string>
+    <string name="retry">Retry</string>
 </resources>

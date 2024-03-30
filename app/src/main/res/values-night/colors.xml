@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_color">@color/black</color>
+    <color name="btn_color">@color/white</color>
+    <color name="btn_text_color">@color/black</color>
+    <color name="icon_tint">@color/white</color>
+    <color name="main_text_color">@color/white</color>
+    <color name="sub_text_color">@color/gray</color>
+</resources>
