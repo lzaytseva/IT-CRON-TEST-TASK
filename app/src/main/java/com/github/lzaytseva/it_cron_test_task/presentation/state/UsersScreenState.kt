@@ -4,6 +4,9 @@ import com.github.lzaytseva.it_cron_test_task.domain.model.UserListItem
 import com.github.lzaytseva.it_cron_test_task.util.ErrorType
 
 sealed interface UsersScreenState {
+
+    data object Initial : UsersScreenState
+
     data object Loading : UsersScreenState
 
     data object LoadingNextPage : UsersScreenState
