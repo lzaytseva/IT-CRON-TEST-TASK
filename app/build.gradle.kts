@@ -54,6 +54,8 @@ dependencies {
     implementation(libs.rxJava.core)
     implementation(libs.rxJava.android)
     implementation(libs.kotlinx.serialization)
+    implementation(libs.nav.fragment)
+    implementation(libs.nav.ui)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
