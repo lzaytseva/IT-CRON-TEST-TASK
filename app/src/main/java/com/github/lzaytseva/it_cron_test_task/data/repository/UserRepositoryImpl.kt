@@ -20,8 +20,8 @@ class UserRepositoryImpl(
     private val mapper: UserMapper
 ) : UserRepository {
 
-    override fun getUsers(): Single<Resource<UsersListResult>> {
-        return networkClient.doRequest(GetUsersRequest())
+    override fun getUsers(since: String?): Single<Resource<UsersListResult>> {
+        return networkClient.doRequest(GetUsersRequest(since = since))
             .observeOn(Schedulers.io())
             .flatMap { response ->
                 when (response.code) {

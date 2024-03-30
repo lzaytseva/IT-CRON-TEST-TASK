@@ -7,7 +7,7 @@ import io.reactivex.Single
 
 interface UserRepository {
 
-    fun getUsers(): Single<Resource<UsersListResult>>
+    fun getUsers(since: String?): Single<Resource<UsersListResult>>
 
     fun getUserDetails(username: String): Single<Resource<UserDetails>>
 }
