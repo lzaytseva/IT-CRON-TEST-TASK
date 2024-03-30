@@ -45,11 +45,10 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    implementation(libs.retrofit.adapter)
+    implementation(libs.retrofit.converter.gson)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.rxjava)
     implementation(libs.glide.core)
-    implementation(libs.glide.compiler)
     implementation(libs.koin)
     implementation(libs.rxJava.core)
     implementation(libs.rxJava.android)
