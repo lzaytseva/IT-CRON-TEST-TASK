@@ -77,9 +77,9 @@ class RetrofitNetworkClient(
     }
 
     companion object {
-        private const val CODE_NO_INTERNET = -1
-        private const val CODE_WRONG_REQUEST = 400
-        private const val SERVER_ERROR = 500
-        private const val CODE_SUCCESS = 200
+        const val CODE_NO_INTERNET = -1
+        const val CODE_WRONG_REQUEST = 400
+        const val SERVER_ERROR = 500
+        const val CODE_SUCCESS = 200
     }
 }
