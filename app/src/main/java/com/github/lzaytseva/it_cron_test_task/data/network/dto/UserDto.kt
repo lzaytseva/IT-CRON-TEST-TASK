@@ -1,11 +1,13 @@
 package com.github.lzaytseva.it_cron_test_task.data.network.dto
 
+import com.google.gson.annotations.SerializedName
+
 data class UserDto(
-    val avatar_url: String,
-    val created_at: String,
+    @SerializedName("avatar_url") val avatarUrl: String,
+    @SerializedName("created_at") val createdAt: String,
     val email: String,
     val followers: Int,
     val following: Int,
     val name: String,
-    val organizations_url: String?
+    @SerializedName("organizations_url") val organizationsUrl: String?
 )
