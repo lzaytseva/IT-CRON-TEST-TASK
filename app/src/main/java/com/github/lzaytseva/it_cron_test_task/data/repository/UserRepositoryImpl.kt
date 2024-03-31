@@ -1,6 +1,5 @@
 package com.github.lzaytseva.it_cron_test_task.data.repository
 
-import android.util.Log
 import com.github.lzaytseva.it_cron_test_task.data.network.api.NetworkClient
 import com.github.lzaytseva.it_cron_test_task.data.network.dto.request.GetUserDetailsRequest
 import com.github.lzaytseva.it_cron_test_task.data.network.dto.request.GetUsersRequest
