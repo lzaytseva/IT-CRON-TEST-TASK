@@ -1,6 +1,5 @@
 package com.github.lzaytseva.it_cron_test_task.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +10,6 @@ import com.github.lzaytseva.it_cron_test_task.presentation.state.UsersScreenStat
 import com.github.lzaytseva.it_cron_test_task.util.Resource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 
 
 class UsersViewModel(

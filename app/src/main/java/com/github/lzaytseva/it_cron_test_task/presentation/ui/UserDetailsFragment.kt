@@ -9,13 +9,10 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.github.lzaytseva.it_cron_test_task.R
 import com.github.lzaytseva.it_cron_test_task.databinding.FragmentUserDetailsBinding
 import com.github.lzaytseva.it_cron_test_task.domain.model.UserDetails
-import com.github.lzaytseva.it_cron_test_task.domain.model.UserListItem
 import com.github.lzaytseva.it_cron_test_task.presentation.state.UserDetailsScreenState
-import com.github.lzaytseva.it_cron_test_task.presentation.state.UsersScreenState
 import com.github.lzaytseva.it_cron_test_task.presentation.ui.util.BindingFragment
 import com.github.lzaytseva.it_cron_test_task.presentation.viewmodel.UserDetailsViewModel
 import com.github.lzaytseva.it_cron_test_task.util.ErrorType
@@ -58,7 +55,7 @@ class UserDetailsFragment : BindingFragment<FragmentUserDetailsBinding>() {
     }
 
     private fun showContent(userDetails: UserDetails) {
-        with (binding) {
+        with(binding) {
             showViews(isInfoLayoutVisible = true)
 
             with(userDetails) {
@@ -71,8 +68,7 @@ class UserDetailsFragment : BindingFragment<FragmentUserDetailsBinding>() {
                 organizationsUrl?.let {
                     tvOrganizarion.text = it
                 }
-                val cornerRadius =
-                   resources.getDimensionPixelSize(R.dimen.avatar_corner_radius)
+
                 Glide.with(ivAvatar)
                     .load(avatarUrl)
                     .transform(CircleCrop())

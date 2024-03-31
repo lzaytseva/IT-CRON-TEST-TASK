@@ -4,12 +4,10 @@ import com.github.lzaytseva.it_cron_test_task.data.network.dto.UserDto
 import com.github.lzaytseva.it_cron_test_task.data.network.dto.UserListItemDto
 import com.github.lzaytseva.it_cron_test_task.domain.model.UserDetails
 import com.github.lzaytseva.it_cron_test_task.domain.model.UserListItem
-import java.text.SimpleDateFormat
-import java.util.logging.SimpleFormatter
 
 class UserMapper {
     fun mapUserToDomain(userDto: UserDto): UserDetails {
-        return with (userDto) {
+        return with(userDto) {
             UserDetails(
                 avatarUrl = avatarUrl,
                 createdAt = createdAt.substringBefore('T'),
@@ -23,7 +21,7 @@ class UserMapper {
     }
 
     fun mapUserListItemToDomain(userListItemDto: UserListItemDto): UserListItem {
-        return with (userListItemDto) {
+        return with(userListItemDto) {
             UserListItem(
                 avatarUrl = avatarUrl,
                 id = id,
