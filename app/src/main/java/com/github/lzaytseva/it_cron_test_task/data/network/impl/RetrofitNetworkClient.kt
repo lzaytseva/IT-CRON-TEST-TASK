@@ -1,7 +1,6 @@
 package com.github.lzaytseva.it_cron_test_task.data.network.impl
 
 import android.content.Context
-import android.util.Log
 import com.github.lzaytseva.it_cron_test_task.data.network.api.GithubApiService
 import com.github.lzaytseva.it_cron_test_task.data.network.api.NetworkClient
 import com.github.lzaytseva.it_cron_test_task.data.network.dto.request.GetUserDetailsRequest
@@ -18,7 +17,7 @@ class RetrofitNetworkClient(
 ) : NetworkClient {
     override fun doRequest(dto: Any): Single<Response> {
         if (!ConnectionChecker.isConnected(context = context)) {
-            return Single.just(Response().apply { CODE_NO_INTERNET })
+            return Single.just(Response().apply { code = CODE_NO_INTERNET })
         }
 
 
@@ -26,9 +25,11 @@ class RetrofitNetworkClient(
             is GetUsersRequest -> {
                 getUsers(dto.since)
             }
+
             is GetUserDetailsRequest -> {
                 getUserDetails(dto.username)
             }
+
             else -> {
                 Single.just(Response().apply { code = CODE_WRONG_REQUEST })
             }
