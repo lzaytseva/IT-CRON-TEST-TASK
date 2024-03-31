@@ -43,8 +43,10 @@ class UsersFragment : BindingFragment<FragmentUsersBinding>() {
             is UsersScreenState.Content -> showContent(state.users)
             is UsersScreenState.Error -> showError(state.error)
             is UsersScreenState.ErrorLoadingNextPage -> {
-                showErrorLoadingNextPage(state.error)
-                viewModel.setFeedbackWasShown(state)
+                if (!state.feedbackWasShown) {
+                    showErrorLoadingNextPage(state.error)
+                    viewModel.setFeedbackWasShown(state)
+                }
             }
             UsersScreenState.Loading -> showLoading()
             UsersScreenState.LoadingNextPage -> showLoadingNextPage()
@@ -129,7 +131,7 @@ class UsersFragment : BindingFragment<FragmentUsersBinding>() {
 
     private fun setBtnRetryClickListener() {
         binding.btnRetry.setOnClickListener {
-          viewModel.loadFirstPage()
+            viewModel.loadFirstPage()
         }
     }
 

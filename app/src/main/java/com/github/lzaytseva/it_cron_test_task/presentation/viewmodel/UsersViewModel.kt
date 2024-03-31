@@ -9,6 +9,7 @@ import com.github.lzaytseva.it_cron_test_task.domain.model.UsersListResult
 import com.github.lzaytseva.it_cron_test_task.domain.usecase.GetUsersUseCase
 import com.github.lzaytseva.it_cron_test_task.presentation.state.UsersScreenState
 import com.github.lzaytseva.it_cron_test_task.util.Resource
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 
@@ -24,33 +25,34 @@ class UsersViewModel(
     private var nextSince: String? = null
     private val users = mutableListOf<UserListItem>()
 
-    private var disposable: Disposable? = null
+    private var compositeDisposable = CompositeDisposable()
 
     init {
         loadFirstPage()
     }
 
     fun loadFirstPage() {
-        disposable = usersUseCase.invoke()
+        val disposable = usersUseCase.invoke()
             .doOnSubscribe {
                 _uiState.value = UsersScreenState.Loading
             }
             .subscribe { resource ->
                 processResult(resource)
             }
+        compositeDisposable.add(disposable)
     }
 
     fun loadNextPage() {
         if (isNextPageLoading) return
-        disposable = usersUseCase.invoke(since = nextSince)
+        val disposable = usersUseCase.invoke(since = nextSince)
             .doOnSubscribe {
                 _uiState.value = UsersScreenState.LoadingNextPage
                 isNextPageLoading = true
             }
             .subscribe { resource ->
                 processResult(resource, processNextPage = true)
-                isNextPageLoading = false
             }
+        compositeDisposable.add(disposable)
     }
 
     private fun processResult(
@@ -77,6 +79,7 @@ class UsersViewModel(
                 _uiState.value = UsersScreenState.Content(
                     users = users
                 )
+                isNextPageLoading = false
             }
         }
     }
@@ -87,6 +90,6 @@ class UsersViewModel(
 
     override fun onCleared() {
         super.onCleared()
-        disposable?.dispose()
+        compositeDisposable.dispose()
     }
 }
