@@ -55,6 +55,7 @@ class UserDetailsFragment : BindingFragment<FragmentUserDetailsBinding>() {
     }
 
     private fun showContent(userDetails: UserDetails) {
+        binding.refreshLayout.isRefreshing = false
         with(binding) {
             showViews(isInfoLayoutVisible = true)
 
@@ -80,6 +81,7 @@ class UserDetailsFragment : BindingFragment<FragmentUserDetailsBinding>() {
     }
 
     private fun showError(error: ErrorType) {
+        binding.refreshLayout.isRefreshing = false
         showViews(isErrorLayoutVisible = true)
 
         var imageResId = 0
@@ -104,6 +106,7 @@ class UserDetailsFragment : BindingFragment<FragmentUserDetailsBinding>() {
     }
 
     private fun showLoading() {
+        if (binding.refreshLayout.isRefreshing) return
         showViews(isProgressBarVisible = true)
     }
 
@@ -113,7 +116,7 @@ class UserDetailsFragment : BindingFragment<FragmentUserDetailsBinding>() {
         isErrorLayoutVisible: Boolean = false
     ) {
         with(binding) {
-            errorLayout.isVisible = isErrorLayoutVisible
+            refreshLayout.isVisible = isErrorLayoutVisible
             card.isVisible = isInfoLayoutVisible
             detailsLayout.isVisible = isInfoLayoutVisible
             progressLayout.isVisible = isProgressBarVisible
@@ -122,7 +125,11 @@ class UserDetailsFragment : BindingFragment<FragmentUserDetailsBinding>() {
 
 
     private fun initViews() {
-        binding.btnRetry.setOnClickListener {
+        initRefreshLayout()
+    }
+
+    private fun initRefreshLayout() {
+        binding.refreshLayout.setOnRefreshListener {
             viewModel.loadDetails()
         }
     }

@@ -11,8 +11,8 @@
     <FrameLayout
         android:id="@+id/progress_layout"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -24,41 +24,40 @@
 
     </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/error_layout"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_error"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginBottom="16dp"
-            tools:src="@drawable/connection_error" />
-
-        <TextView
-            android:id="@+id/tv_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:textColor="@color/main_text_color"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            tools:text="Check your internet connection" />
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_retry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/btn_color"
-            android:text="@string/retry"
-            android:textColor="@color/btn_text_color" />
+            <ImageView
+                android:id="@+id/iv_error"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                tools:src="@drawable/connection_error" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:textColor="@color/main_text_color"
+                android:textSize="24sp"
+                android:paddingHorizontal="8dp"
+                android:textStyle="bold"
+                tools:text="Check your internet connection" />
+
+        </LinearLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
@@ -116,11 +115,11 @@
 
     <LinearLayout
         android:id="@+id/details_layout"
-        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:orientation="vertical"
-        android:layout_marginTop="32dp">
+        android:padding="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/org_layout"
@@ -143,8 +142,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:text="@string/organization"
-                android:textSize="16sp"
                 android:textColor="@color/sub_text_color"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/iv_org_icon"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -153,19 +152,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                tools:text="Github"
-                android:textSize="20sp"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/main_text_color"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/iv_org_icon"
-                app:layout_constraintTop_toBottomOf="@id/tv_org_label" />
+                app:layout_constraintTop_toBottomOf="@id/tv_org_label"
+                tools:text="Github" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:padding="16dp">
 
             <ImageView
@@ -183,8 +182,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:text="@string/following"
-                android:textSize="16sp"
                 android:textColor="@color/sub_text_color"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/iv_following_icon"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -193,19 +192,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                tools:text="40"
-                android:textSize="20sp"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/main_text_color"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/iv_following_icon"
-                app:layout_constraintTop_toBottomOf="@id/tv_following_label" />
+                app:layout_constraintTop_toBottomOf="@id/tv_following_label"
+                tools:text="40" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:padding="16dp">
 
             <ImageView
@@ -223,8 +222,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:text="@string/followers"
-                android:textSize="16sp"
                 android:textColor="@color/sub_text_color"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/iv_followers_icon"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -233,19 +232,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                tools:text="40"
-                android:textSize="20sp"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/main_text_color"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/iv_followers_icon"
-                app:layout_constraintTop_toBottomOf="@id/tv_followers_label" />
+                app:layout_constraintTop_toBottomOf="@id/tv_followers_label"
+                tools:text="40" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:padding="16dp">
 
             <ImageView
@@ -263,8 +262,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:text="@string/created_at"
-                android:textSize="16sp"
                 android:textColor="@color/sub_text_color"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/iv_created_icon"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -273,12 +272,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                tools:text="20.03.2024"
-                android:textSize="20sp"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/main_text_color"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/iv_created_icon"
-                app:layout_constraintTop_toBottomOf="@id/tv_created_label" />
+                app:layout_constraintTop_toBottomOf="@id/tv_created_label"
+                tools:text="20.03.2024" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.kotlinx.serialization)
     implementation(libs.nav.fragment)
     implementation(libs.nav.ui)
+    implementation(libs.refreshLayout)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

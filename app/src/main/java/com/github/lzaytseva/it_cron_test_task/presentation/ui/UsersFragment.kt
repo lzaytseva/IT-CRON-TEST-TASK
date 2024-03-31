@@ -59,11 +59,13 @@ class UsersFragment : BindingFragment<FragmentUsersBinding>() {
     }
 
     private fun showContent(users: List<UserListItem>) {
+        binding.refreshLayout.isRefreshing = false
         showViews(isRecyclerViewVisible = true)
         adapter.submitList(users)
     }
 
     private fun showError(error: ErrorType) {
+        binding.refreshLayout.isRefreshing = false
         showViews(isErrorLayoutVisible = true)
 
         var imageResId = 0
@@ -99,6 +101,7 @@ class UsersFragment : BindingFragment<FragmentUsersBinding>() {
     }
 
     private fun showLoading() {
+        if (binding.refreshLayout.isRefreshing) return
         showViews(isProgressBarVisible = true)
     }
 
@@ -108,7 +111,7 @@ class UsersFragment : BindingFragment<FragmentUsersBinding>() {
 
     private fun initViews() {
         initRecyclerView()
-        setBtnRetryClickListener()
+        initRefreshLayout()
     }
 
     private fun initRecyclerView() {
@@ -134,8 +137,8 @@ class UsersFragment : BindingFragment<FragmentUsersBinding>() {
         )
     }
 
-    private fun setBtnRetryClickListener() {
-        binding.btnRetry.setOnClickListener {
+    private fun initRefreshLayout() {
+        binding.refreshLayout.setOnRefreshListener {
             viewModel.loadFirstPage()
         }
     }
@@ -146,7 +149,7 @@ class UsersFragment : BindingFragment<FragmentUsersBinding>() {
         isErrorLayoutVisible: Boolean = false
     ) {
         with(binding) {
-            errorLayout.isVisible = isErrorLayoutVisible
+            refreshLayout.isVisible = isErrorLayoutVisible
             rvUsers.isVisible = isRecyclerViewVisible
             progressBar.isVisible = isProgressBarVisible
         }
