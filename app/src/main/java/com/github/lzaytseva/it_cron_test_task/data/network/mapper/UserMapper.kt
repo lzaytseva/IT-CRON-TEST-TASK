@@ -14,7 +14,7 @@ class UserMapper {
                 email = email,
                 followers = followers,
                 following = following,
-                name = name,
+                name = name.replace(' ', '\n'),
                 organizationsUrl = organizationsUrl
             )
         }
