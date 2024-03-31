@@ -1,5 +1,6 @@
 package com.github.lzaytseva.it_cron_test_task.data.repository
 
+import android.util.Log
 import com.github.lzaytseva.it_cron_test_task.data.network.api.NetworkClient
 import com.github.lzaytseva.it_cron_test_task.data.network.dto.request.GetUserDetailsRequest
 import com.github.lzaytseva.it_cron_test_task.data.network.dto.request.GetUsersRequest
@@ -22,7 +23,6 @@ class UserRepositoryImpl(
 
     override fun getUsers(since: String?): Single<Resource<UsersListResult>> {
         return networkClient.doRequest(GetUsersRequest(since = since))
-            .observeOn(Schedulers.io())
             .flatMap { response ->
                 when (response.code) {
                     RetrofitNetworkClient.CODE_SUCCESS -> {
@@ -55,12 +55,11 @@ class UserRepositoryImpl(
                         )
                     }
                 }
-            }
+            }.subscribeOn(Schedulers.io())
     }
 
     override fun getUserDetails(username: String): Single<Resource<UserDetails>> {
         return networkClient.doRequest(GetUserDetailsRequest(username = username))
-            .observeOn(Schedulers.io())
             .flatMap { response ->
                 when (response.code) {
                     RetrofitNetworkClient.CODE_SUCCESS -> {
@@ -88,6 +87,6 @@ class UserRepositoryImpl(
                         )
                     }
                 }
-            }
+            }.subscribeOn(Schedulers.io())
     }
 }

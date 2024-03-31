@@ -5,8 +5,6 @@ import com.github.lzaytseva.it_cron_test_task.util.ErrorType
 
 sealed interface UsersScreenState {
 
-    data object Initial : UsersScreenState
-
     data object Loading : UsersScreenState
 
     data object LoadingNextPage : UsersScreenState
@@ -15,10 +13,11 @@ sealed interface UsersScreenState {
 
     data class Error(val error: ErrorType) : UsersScreenState
 
+    data class ErrorLoadingNextPage(
+        val error: ErrorType,
+        var feedbackWasShown: Boolean = false
+    ) : UsersScreenState
+
     data object NoMoreContent
 
-}
-
-sealed interface UsersScreenSideEffects {
-    data class ErrorLoadingNextPage(val error: ErrorType) : UsersScreenSideEffects
 }

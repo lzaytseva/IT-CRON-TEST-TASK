@@ -5,8 +5,6 @@ import com.github.lzaytseva.it_cron_test_task.util.ErrorType
 
 sealed interface UserDetailsScreenState {
 
-    data object Initial : UserDetailsScreenState
-
     data class Content(val userDetails: UserDetails) : UserDetailsScreenState
 
     data class Error(val error: ErrorType) : UserDetailsScreenState

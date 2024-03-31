@@ -61,9 +61,9 @@
             android:id="@+id/btn_retry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/btn_color"
             android:text="@string/retry"
-            android:textColor="@color/white" />
+            android:textColor="@color/btn_text_color" />
 
     </LinearLayout>
 

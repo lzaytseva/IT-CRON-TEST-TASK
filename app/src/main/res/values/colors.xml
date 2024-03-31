@@ -12,4 +12,6 @@
     <color name="icon_tint">@color/black</color>
     <color name="main_text_color">@color/black</color>
     <color name="sub_text_color">@color/dark_gray</color>
+    <color name="snackbar_bg">@color/black</color>
+    <color name="snackbar_text_color">@color/white</color>
 </resources>

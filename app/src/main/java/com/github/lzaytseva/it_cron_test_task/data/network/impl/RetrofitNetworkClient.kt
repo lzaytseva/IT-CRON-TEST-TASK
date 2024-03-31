@@ -1,6 +1,7 @@
 package com.github.lzaytseva.it_cron_test_task.data.network.impl
 
 import android.content.Context
+import android.util.Log
 import com.github.lzaytseva.it_cron_test_task.data.network.api.GithubApiService
 import com.github.lzaytseva.it_cron_test_task.data.network.api.NetworkClient
 import com.github.lzaytseva.it_cron_test_task.data.network.dto.request.GetUserDetailsRequest
@@ -10,23 +11,27 @@ import com.github.lzaytseva.it_cron_test_task.data.network.dto.response.UserDeta
 import com.github.lzaytseva.it_cron_test_task.data.network.dto.response.UsersResponse
 import com.github.lzaytseva.it_cron_test_task.data.util.ConnectionChecker
 import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
 
 class RetrofitNetworkClient(
     private val context: Context,
     private val githubApiService: GithubApiService
 ) : NetworkClient {
     override fun doRequest(dto: Any): Single<Response> {
-
-        if (ConnectionChecker.isConnected(context = context)) {
+        if (!ConnectionChecker.isConnected(context = context)) {
             return Single.just(Response().apply { CODE_NO_INTERNET })
         }
 
 
         return when (dto) {
-            is GetUsersRequest -> getUsers(dto.since)
-            is GetUserDetailsRequest -> getUserDetails(dto.username)
-            else -> Single.just(Response().apply { code = CODE_WRONG_REQUEST })
+            is GetUsersRequest -> {
+                getUsers(dto.since)
+            }
+            is GetUserDetailsRequest -> {
+                getUserDetails(dto.username)
+            }
+            else -> {
+                Single.just(Response().apply { code = CODE_WRONG_REQUEST })
+            }
         }
     }
 
@@ -53,7 +58,6 @@ class RetrofitNetworkClient(
                     Single.just(Response().apply { code = SERVER_ERROR })
                 }
             }
-            .subscribeOn(Schedulers.io())
     }
 
     private fun getUserDetails(username: String): Single<Response> {
@@ -73,7 +77,6 @@ class RetrofitNetworkClient(
                     Single.just(Response().apply { code = SERVER_ERROR })
                 }
             }
-            .subscribeOn(Schedulers.io())
     }
 
     companion object {
