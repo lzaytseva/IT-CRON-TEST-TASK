@@ -61,6 +61,7 @@ class UsersViewModel(
     ) {
         when (resource) {
             is Resource.Error -> {
+                isNextPageLoading = false
                 _uiState.value = if (processNextPage) {
                     UsersScreenState.ErrorLoadingNextPage(
                         error = resource.errorType!!
