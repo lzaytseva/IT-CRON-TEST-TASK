@@ -4,13 +4,15 @@ import com.github.lzaytseva.it_cron_test_task.data.network.dto.UserDto
 import com.github.lzaytseva.it_cron_test_task.data.network.dto.UserListItemDto
 import com.github.lzaytseva.it_cron_test_task.domain.model.UserDetails
 import com.github.lzaytseva.it_cron_test_task.domain.model.UserListItem
+import java.text.SimpleDateFormat
+import java.util.logging.SimpleFormatter
 
 class UserMapper {
     fun mapUserToDomain(userDto: UserDto): UserDetails {
         return with (userDto) {
             UserDetails(
                 avatarUrl = avatarUrl,
-                createdAt = createdAt,
+                createdAt = createdAt.substringBefore('T'),
                 email = email,
                 followers = followers,
                 following = following,

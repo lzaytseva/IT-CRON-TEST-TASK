@@ -9,6 +9,7 @@ import com.github.lzaytseva.it_cron_test_task.domain.model.UsersListResult
 import com.github.lzaytseva.it_cron_test_task.domain.usecase.GetUsersUseCase
 import com.github.lzaytseva.it_cron_test_task.presentation.state.UsersScreenState
 import com.github.lzaytseva.it_cron_test_task.util.Resource
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
@@ -33,6 +34,7 @@ class UsersViewModel(
 
     fun loadFirstPage() {
         val disposable = usersUseCase.invoke()
+            .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
                 _uiState.value = UsersScreenState.Loading
             }
@@ -45,6 +47,7 @@ class UsersViewModel(
     fun loadNextPage() {
         if (isNextPageLoading) return
         val disposable = usersUseCase.invoke(since = nextSince)
+            .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
                 _uiState.value = UsersScreenState.LoadingNextPage
                 isNextPageLoading = true

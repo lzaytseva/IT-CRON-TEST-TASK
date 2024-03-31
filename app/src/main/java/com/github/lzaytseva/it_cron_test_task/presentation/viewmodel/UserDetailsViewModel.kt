@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.github.lzaytseva.it_cron_test_task.domain.model.UserDetails
 import com.github.lzaytseva.it_cron_test_task.domain.usecase.GetUserDetailsUseCase
 import com.github.lzaytseva.it_cron_test_task.presentation.state.UserDetailsScreenState
+import com.github.lzaytseva.it_cron_test_task.presentation.state.UsersScreenState
 import com.github.lzaytseva.it_cron_test_task.util.Resource
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
 class UserDetailsViewModel(
@@ -27,6 +29,10 @@ class UserDetailsViewModel(
 
     fun loadDetails() {
         val disposable = userDetailsUseCase.invoke(username)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                _uiState.value = UserDetailsScreenState.Loading
+            }
             .subscribe { resource ->
                 processResult(resource)
             }
@@ -38,7 +44,7 @@ class UserDetailsViewModel(
     ) {
         when (resource) {
             is Resource.Error -> {
-                UserDetailsScreenState.Error(
+                _uiState.value = UserDetailsScreenState.Error(
                     error = resource.errorType!!
                 )
             }

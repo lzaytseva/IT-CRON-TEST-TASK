@@ -6,8 +6,23 @@
     android:layout_height="match_parent"
     android:background="@color/bg_color"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".presentation.ui.UserDetailsFragment">
+
+    <FrameLayout
+        android:id="@+id/progress_layout"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent" >
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:indeterminateTint="@color/dark_blue" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/error_layout"
@@ -49,7 +64,8 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="16dp">
+        android:layout_margin="16dp"
+        app:cardElevation="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -57,7 +73,7 @@
             android:padding="16dp">
 
             <ImageView
-                android:id="@+id/iv_avater"
+                android:id="@+id/iv_avatar"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -70,11 +86,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:ellipsize="end"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:textColor="@color/main_text_color"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/iv_avater"
+                app:layout_constraintEnd_toStartOf="@id/iv_avatar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Nicolas" />
@@ -89,7 +105,7 @@
                 android:textColor="@color/main_text_color"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/iv_avater"
+                app:layout_constraintEnd_toStartOf="@id/iv_avatar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_name"
                 tools:text="nicolas@gmail.com" />
@@ -100,6 +116,7 @@
 
     <LinearLayout
         android:id="@+id/details_layout"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -125,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="Organization"
+                android:text="@string/organization"
                 android:textSize="16sp"
                 android:textColor="@color/sub_text_color"
                 app:layout_constraintStart_toEndOf="@id/iv_org_icon"
@@ -165,7 +182,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="Following"
+                android:text="@string/following"
                 android:textSize="16sp"
                 android:textColor="@color/sub_text_color"
                 app:layout_constraintStart_toEndOf="@id/iv_following_icon"
@@ -205,7 +222,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="Followers"
+                android:text="@string/followers"
                 android:textSize="16sp"
                 android:textColor="@color/sub_text_color"
                 app:layout_constraintStart_toEndOf="@id/iv_followers_icon"
@@ -245,7 +262,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="Created at"
+                android:text="@string/created_at"
                 android:textSize="16sp"
                 android:textColor="@color/sub_text_color"
                 app:layout_constraintStart_toEndOf="@id/iv_created_icon"

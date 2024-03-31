@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.lzaytseva.it_cron_test_task.R
@@ -22,8 +23,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class UsersFragment : BindingFragment<FragmentUsersBinding>() {
 
     private val viewModel: UsersViewModel by viewModel()
-    private val adapter = UserAdapter {
-
+    private val adapter = UserAdapter { user ->
+        findNavController().navigate(
+            R.id.action_usersFragment_to_userDetailsFragment,
+            UserDetailsFragment.createArgs(user.login)
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,6 +52,7 @@ class UsersFragment : BindingFragment<FragmentUsersBinding>() {
                     viewModel.setFeedbackWasShown(state)
                 }
             }
+
             UsersScreenState.Loading -> showLoading()
             UsersScreenState.LoadingNextPage -> showLoadingNextPage()
         }
@@ -153,4 +158,5 @@ class UsersFragment : BindingFragment<FragmentUsersBinding>() {
     ): FragmentUsersBinding {
         return FragmentUsersBinding.inflate(inflater, container, false)
     }
+
 }

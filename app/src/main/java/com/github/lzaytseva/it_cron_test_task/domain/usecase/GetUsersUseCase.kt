@@ -10,6 +10,6 @@ class GetUsersUseCase(
     private val repository: UserRepository
 ) {
     operator fun invoke(since: String? = null): Single<Resource<UsersListResult>> {
-        return repository.getUsers(since = since).observeOn(AndroidSchedulers.mainThread())
+        return repository.getUsers(since = since)
     }
 }
